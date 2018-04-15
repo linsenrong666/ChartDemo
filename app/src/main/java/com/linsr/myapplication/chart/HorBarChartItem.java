@@ -5,6 +5,7 @@ import android.media.Image;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -79,6 +80,10 @@ public class HorBarChartItem extends LinearLayout {
                 return false;
             }
         });
+    }
+
+    public void setBtnClickListener(View.OnClickListener listener) {
+        mBarBtn.setOnClickListener(listener);
     }
 
     public void setMaxScale(double maxScale) {
