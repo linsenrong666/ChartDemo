@@ -7,24 +7,43 @@
 
     <Button
         android:id="@+id/aa_btn"
-        android:text="去柱状图"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="去柱状图"/>
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/a_line_chart"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:orientation="horizontal">
+
+            <com.linsr.myapplication.MyLineChart
+                android:id="@+id/a_line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:background="@color/bg_blue"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <Button
         android:id="@+id/aa_line_btn"
-        android:text="曲线图新增数据"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="曲线图新增数据"/>
+
     <com.github.mikephil.charting.charts.HorizontalBarChart
         android:id="@+id/a_bar_chart"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"/>
 
 </LinearLayout>

@@ -1,6 +1,9 @@
 package com.linsr.myapplication;
 
 import android.graphics.Color;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -16,6 +19,8 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.linsr.myapplication.R.id.scrollView;
+
 /**
  * Description
  @author Linsr
@@ -23,11 +28,30 @@ import java.util.List;
 
 public class LineChartUtils {
 
-    public static void lineChart(LineChart lineChart) {
+    public static void lineChart(final LineChart lineChart) {
         lineChart.setScaleEnabled(false);
         lineChart.setDrawGridBackground(false);
-//        lineChart.setTouchEnabled(false);
+        lineChart.setTouchEnabled(true);
         lineChart.setDescription(null);
+        lineChart.setDragEnabled(true);
+
+//        lineChart.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                boolean isScaled = lineChart.getScaleX() != 1.0 && lineChart.getScaleY() != 1.0;
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    Log.e("====","onmove");
+//                    lineChart.getParent().requestDisallowInterceptTouchEvent(true);
+//                    return false;
+//                } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+//                    return false;
+//                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    return false;
+//                } else {
+//                    return false;
+//                }
+//            }
+//        });
     }
 
     public static void XAxis(int color,LineChart lineChart) {
@@ -35,11 +59,12 @@ public class LineChartUtils {
         //是否启用X轴
         xAxis.setEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//值：BOTTOM,BOTH_SIDED,BOTTOM_INSIDE,TOP,TOP_INSIDE
-        xAxis.setLabelCount(12, true);
+//        xAxis.setLabelCount(12, true);
         //设置X轴上每个竖线是否显示
         xAxis.setDrawGridLines(false);
         xAxis.setAxisLineColor(color);//设置x轴线颜色
         xAxis.setAxisLineWidth(1f);//设置x轴线宽度
+        xAxis.setAvoidFirstLastClipping(true);
     }
 
     public static void YAxis(int color,LineChart lineChart) {

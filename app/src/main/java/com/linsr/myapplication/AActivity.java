@@ -2,11 +2,13 @@ package com.linsr.myapplication;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -38,7 +40,7 @@ import java.util.List;
 
 public class AActivity extends AppCompatActivity {
 
-    private LineChart mLineChart;
+    private MyLineChart mLineChart;
     private HorizontalBarChart mHorizontalBarChart;
 
     private List<Entry> entries;
@@ -65,10 +67,10 @@ public class AActivity extends AppCompatActivity {
                 entries.clear();
                 entries1.clear();
                 //设置数据
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < 100; i++) {
                     entries.add(new Entry(i, (float) (((Math.random())) * i)));
                 }
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < 100; i++) {
                     entries1.add(new Entry(i, (float) (((Math.random())) * i)));
                 }
                 //通知数据已经改变
@@ -149,26 +151,30 @@ public class AActivity extends AppCompatActivity {
     }
 
     private void init() {
-        mLineChart = (LineChart) findViewById(R.id.a_line_chart);
+        mLineChart = (MyLineChart) findViewById(R.id.a_line_chart);
         LineChartUtils.legend(mLineChart);
         LineChartUtils.lineChart(mLineChart);
         LineChartUtils.XAxis(getResources().getColor(R.color.line), mLineChart);
         LineChartUtils.YAxis(getResources().getColor(R.color.line), mLineChart);
         //设置数据
-        for (int i = 1; i < 12; i++) {
-            entries.add(new Entry(i, (float) (((Math.random())) * i)));
+        for (int i = 0; i < 100; i++) {
+            entries.add(new Entry(i + 1, (float) (((Math.random()) * 10))));
         }
-        for (int i = 1; i < 12; i++) {
-            entries1.add(new Entry(i, (float) (((Math.random())) * i)));
+        for (int i = 0; i < 100; i++) {
+            entries1.add(new Entry(i + 1, (float) (((Math.random() * 10)))));
         }
         LineDataSet a = LineChartUtils.lineDataSet("当日分时数据", getResources().getColor(R.color.main_red), entries);
         LineDataSet b = LineChartUtils.lineDataSet("昨日分时数据", Color.GRAY, entries1);
         List<ILineDataSet> lineDataSets = new ArrayList<>();
         lineDataSets.add(a);
         lineDataSets.add(b);
+
         mLineData = new LineData(lineDataSets);
         mLineChart.setData(mLineData);
 
+        ViewGroup.LayoutParams para = mLineChart.getLayoutParams();
+        para.width = DisplayUtils.getScreenWidthPixels(this);//修改宽度
+        mLineChart.setLayoutParams(para);
     }
 
     private LineData mLineData;
