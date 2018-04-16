@@ -1,9 +1,12 @@
 package com.linsr.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -38,16 +41,44 @@ public class AActivity extends AppCompatActivity {
     private LineChart mLineChart;
     private HorizontalBarChart mHorizontalBarChart;
 
-    private List<String> mXList;
+    private List<Entry> entries;
+    private List<Entry> entries1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a);
+        entries = new ArrayList<>();
+        entries1 = new ArrayList<>();
         init();
         init2();
-        bindData();
+        findViewById(R.id.aa_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AActivity.this, BarActivity.class));
+            }
+        });
+        findViewById(R.id.aa_line_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("==", "==");
+                entries.clear();
+                entries1.clear();
+                //设置数据
+                for (int i = 0; i < 12; i++) {
+                    entries.add(new Entry(i, (float) (((Math.random())) * i)));
+                }
+                for (int i = 0; i < 12; i++) {
+                    entries1.add(new Entry(i, (float) (((Math.random())) * i)));
+                }
+                //通知数据已经改变
+                mLineData.notifyDataChanged();
+                mLineChart.notifyDataSetChanged();
+                mLineChart.invalidate();
+            }
+        });
     }
+
 
     private void init2() {
         mHorizontalBarChart = (HorizontalBarChart) findViewById(R.id.a_bar_chart);
@@ -121,49 +152,24 @@ public class AActivity extends AppCompatActivity {
         mLineChart = (LineChart) findViewById(R.id.a_line_chart);
         LineChartUtils.legend(mLineChart);
         LineChartUtils.lineChart(mLineChart);
-        LineChartUtils.XAxis(mLineChart);
-        LineChartUtils.YAxis(mLineChart);
+        LineChartUtils.XAxis(getResources().getColor(R.color.line), mLineChart);
+        LineChartUtils.YAxis(getResources().getColor(R.color.line), mLineChart);
         //设置数据
-        List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 1; i < 12; i++) {
             entries.add(new Entry(i, (float) (((Math.random())) * i)));
         }
-        List<Entry> entries1 = new ArrayList<>();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 1; i < 12; i++) {
             entries1.add(new Entry(i, (float) (((Math.random())) * i)));
         }
-        LineDataSet a = LineChartUtils.lineDataSet("当日分时数据", Color.RED, entries);
-        LineDataSet b = LineChartUtils.lineDataSet("昨日分时数据", Color.BLUE, entries1);
+        LineDataSet a = LineChartUtils.lineDataSet("当日分时数据", getResources().getColor(R.color.main_red), entries);
+        LineDataSet b = LineChartUtils.lineDataSet("昨日分时数据", Color.GRAY, entries1);
         List<ILineDataSet> lineDataSets = new ArrayList<>();
         lineDataSets.add(a);
         lineDataSets.add(b);
-        LineData data = new LineData(lineDataSets);
-        mLineChart.setData(data);
+        mLineData = new LineData(lineDataSets);
+        mLineChart.setData(mLineData);
+
     }
 
-    LinearLayout container;
-
-    public void bindData() {
-        container = (LinearLayout) findViewById(R.id.container);
-        container.removeAllViews();
-        BarDataEntity data = new BarDataEntity();
-        data.parseData();
-        if (data.getTypeList() == null) {
-            return;
-        }
-        double maxScale = 0;
-        for (int i = 0; i < data.getTypeList().size(); i++) {
-            if (data.getTypeList().get(i).getTypeScale() > maxScale)
-                maxScale = data.getTypeList().get(i).getTypeScale();
-        }
-        for (int i = 0; i < data.getTypeList().size(); i++) {
-            HorBarChartItem item = new HorBarChartItem(this);
-            item.setLabelName(data.getTypeList().get(i).getTypeName());
-            item.setCount(data.getTypeList().get(i).getSale() + "");
-            item.setMaxScale(maxScale);
-            item.setPercent(data.getTypeList().get(i).getTypeScale());
-            container.addView(item);
-        }
-    }
-
+    private LineData mLineData;
 }

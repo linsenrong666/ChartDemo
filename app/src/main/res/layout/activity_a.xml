@@ -5,18 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/aa_btn"
+        android:text="去柱状图"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/container"
         android:layout_height="wrap_content"/>
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/a_line_chart"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
 
+    <Button
+        android:id="@+id/aa_line_btn"
+        android:text="曲线图新增数据"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <com.github.mikephil.charting.charts.HorizontalBarChart
         android:id="@+id/a_bar_chart"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
 

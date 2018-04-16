@@ -26,11 +26,11 @@ public class LineChartUtils {
     public static void lineChart(LineChart lineChart) {
         lineChart.setScaleEnabled(false);
         lineChart.setDrawGridBackground(false);
-        lineChart.setTouchEnabled(false);
+//        lineChart.setTouchEnabled(false);
         lineChart.setDescription(null);
     }
 
-    public static void XAxis(LineChart lineChart) {
+    public static void XAxis(int color,LineChart lineChart) {
         XAxis xAxis = lineChart.getXAxis();
         //是否启用X轴
         xAxis.setEnabled(true);
@@ -38,11 +38,11 @@ public class LineChartUtils {
         xAxis.setLabelCount(12, true);
         //设置X轴上每个竖线是否显示
         xAxis.setDrawGridLines(false);
-        xAxis.setAxisLineColor(Color.GRAY);//设置x轴线颜色
+        xAxis.setAxisLineColor(color);//设置x轴线颜色
         xAxis.setAxisLineWidth(1f);//设置x轴线宽度
     }
 
-    public static void YAxis(LineChart lineChart) {
+    public static void YAxis(int color,LineChart lineChart) {
         //=================设置左边Y轴===============
         YAxis axisLeft = lineChart.getAxisLeft();
         //是否启用左边Y轴
@@ -50,7 +50,8 @@ public class LineChartUtils {
         axisLeft.setAxisMinimum(0f);
         //设置横向的线为虚线
         axisLeft.enableGridDashedLine(10f, 10f, 0f);
-        axisLeft.setAxisLineColor(Color.GRAY);//设置y轴线颜色
+        axisLeft.setGridColor(color);
+        axisLeft.setAxisLineColor(color);//设置y轴线颜色
         axisLeft.setAxisLineWidth(1f);//设置y轴线宽度
         //禁用右边Y轴
         YAxis axisRight = lineChart.getAxisRight();

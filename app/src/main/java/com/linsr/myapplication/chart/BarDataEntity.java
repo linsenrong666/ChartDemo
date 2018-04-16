@@ -20,6 +20,15 @@ public class BarDataEntity implements Serializable {
         private String typeName;//类型名称
         private int sale;//销量
         private double typeScale;//类型占比
+        private int index;//index
+
+        public int getIndex() {
+            return index;
+        }
+
+        public void setIndex(int index) {
+            this.index = index;
+        }
 
         public String getTypeName() {
             return typeName;
@@ -54,6 +63,7 @@ public class BarDataEntity implements Serializable {
             Type type = new Type();
             type.setSale(r.nextInt(100));
             type.setTypeName("品类" + i);
+            type.setIndex(i);
             typeList.add(type);
         }
         for (int i= 0;i<=6;i++){

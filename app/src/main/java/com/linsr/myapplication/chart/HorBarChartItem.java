@@ -1,9 +1,12 @@
 package com.linsr.myapplication.chart;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.media.Image;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -12,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.linsr.myapplication.DisplayUtils;
 import com.linsr.myapplication.R;
 
 import java.text.DecimalFormat;
@@ -52,8 +56,10 @@ public class HorBarChartItem extends LinearLayout {
                 int percentTxtWidth = mPercent.getWidth();
                 int countTxtWidth = mCount.getWidth();
                 int btnWidth = mBarBtn.getWidth();
-                int minWidth = percentTxtWidth + countTxtWidth + btnWidth;
-                final int initWidth = barContainerWidth - percentTxtWidth - countTxtWidth - btnWidth;
+                int minWidth = percentTxtWidth + countTxtWidth + btnWidth + DisplayUtils.dp2px(getContext(),20);
+                Log.e("===","barContainerWidth:"+barContainerWidth+",percentTxtWidth:"+percentTxtWidth
+                +",countTxtWidth:"+countTxtWidth+",btnWidth:"+btnWidth+",minWidth:"+minWidth);
+                final int initWidth = barContainerWidth - minWidth;
                 final RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mBar.getLayoutParams();
                 int width = (int) (initWidth * percent / maxScale * 100 / 100);
                 if (width < minWidth) {
@@ -64,14 +70,14 @@ public class HorBarChartItem extends LinearLayout {
 //                postDelayed(new Runnable() {
 //                    @Override
 //                    public void run() {
-//                        final int initWidth = bar.getWidth();
-//                        final ObjectAnimator anim = ObjectAnimator.ofFloat(bar, "alpha", 0.0F, 1.0F).setDuration(1500);
+//                        final int initWidth = mBar.getWidth();
+//                        final ObjectAnimator anim = ObjectAnimator.ofFloat(mBar, "alpha", 0.0F, 1.0F).setDuration(1500);
 //                        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 //                            @Override
 //                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
 //                                float cVal = (Float) anim.getAnimatedValue();
 //                                lp.width = (int) (initWidth * cVal);
-//                                bar.setLayoutParams(lp);
+//                                mBar.setLayoutParams(lp);
 //                            }
 //                        });
 //                        anim.start();
