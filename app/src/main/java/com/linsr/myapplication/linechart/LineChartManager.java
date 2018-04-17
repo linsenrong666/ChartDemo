@@ -59,15 +59,15 @@ public class LineChartManager {
 
     private void enableScroll(float xScale, float yScale) {
         Matrix m = new Matrix();
-        m.postScale(xScale, yScale);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
-        mLineChart.getViewPortHandler().refresh(m, mLineChart, false);//将图表动画显示之前进行缩放
+        m.postScale(xScale, yScale);
+        mLineChart.getViewPortHandler().refresh(m, mLineChart, false);
     }
 
     private void XAxis(int color) {
         //是否启用X轴
         mXAxis.setEnabled(true);
         mXAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//值：BOTTOM,BOTH_SIDED,BOTTOM_INSIDE,TOP,TOP_INSIDE
-//        mXAxis.setLabelCount(12, true);
+        mXAxis.setLabelCount(12, true);
         //设置X轴上每个竖线是否显示
         mXAxis.setDrawGridLines(false);
         mXAxis.setAxisLineColor(color);//设置x轴线颜色
