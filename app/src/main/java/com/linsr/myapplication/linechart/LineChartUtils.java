@@ -1,6 +1,7 @@
-package com.linsr.myapplication;
+package com.linsr.myapplication.linechart;
 
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,27 +35,14 @@ public class LineChartUtils {
         lineChart.setTouchEnabled(true);
         lineChart.setDescription(null);
         lineChart.setDragEnabled(true);
-
-//        lineChart.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                boolean isScaled = lineChart.getScaleX() != 1.0 && lineChart.getScaleY() != 1.0;
-//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//                    Log.e("====","onmove");
-//                    lineChart.getParent().requestDisallowInterceptTouchEvent(true);
-//                    return false;
-//                } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-//                    return false;
-//                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-//                    return false;
-//                } else {
-//                    return false;
-//                }
-//            }
-//        });
+    }
+    public static void enableScroll(LineChart lineChart){
+        Matrix m = new Matrix();
+        m.postScale(2f, 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        lineChart.getViewPortHandler().refresh(m, lineChart, false);//将图表动画显示之前进行缩放
     }
 
-    public static void XAxis(int color,LineChart lineChart) {
+    public static void XAxis(int color, LineChart lineChart) {
         XAxis xAxis = lineChart.getXAxis();
         //是否启用X轴
         xAxis.setEnabled(true);
@@ -68,7 +56,7 @@ public class LineChartUtils {
         xAxis.setTextSize(10f);
     }
 
-    public static void YAxis(int color,LineChart lineChart) {
+    public static void YAxis(int color, LineChart lineChart) {
         //=================设置左边Y轴===============
         YAxis axisLeft = lineChart.getAxisLeft();
         //是否启用左边Y轴
@@ -117,29 +105,5 @@ public class LineChartUtils {
         });
         return lineDataSet;
     }
-
-//    /**
-//     * 初始化曲线 每一个LineDataSet代表一条线
-//     *
-//     * @param lineDataSet
-//     * @param color
-//     * @param mode        折线图是否填充
-//     */
-//    private static void initLineDataSet(LineDataSet lineDataSet, int color, boolean mode) {
-//        lineDataSet.setColor(color);
-//        lineDataSet.setCircleColor(color);
-//        lineDataSet.setLineWidth(0.7f);
-//        lineDataSet.setCircleRadius(2f);
-//
-//        //设置曲线值的圆点是实心还是空心
-//        lineDataSet.setDrawCircleHole(true);
-//        lineDataSet.setValueTextSize(9f);
-//        //设置折线图填充
-//        lineDataSet.setDrawFilled(mode);
-//        lineDataSet.setFormLineWidth(1f);
-//        lineDataSet.setFormSize(15.f);
-//        //线模式为圆滑曲线（默认折线）
-//        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-//    }
 
 }

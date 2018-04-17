@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -27,8 +26,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.linsr.myapplication.chart.BarDataEntity;
-import com.linsr.myapplication.chart.HorBarChartItem;
+import com.linsr.myapplication.linechart.LineChartUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +58,12 @@ public class AActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AActivity.this, BarActivity.class));
+            }
+        });
+        findViewById(R.id.aa_b).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AActivity.this, BActivity.class));
             }
         });
         findViewById(R.id.aa_line_btn).setOnClickListener(new View.OnClickListener() {

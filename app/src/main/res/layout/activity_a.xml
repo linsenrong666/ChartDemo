@@ -44,13 +44,20 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/a_line_chart_2"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:layout_margin="10dp"/>
 
         <Button
             android:id="@+id/aa_line_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="曲线图新增数据"/>
+
+        <Button
+            android:id="@+id/aa_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="去b"/>
 
         <com.github.mikephil.charting.charts.HorizontalBarChart
             android:id="@+id/a_bar_chart"

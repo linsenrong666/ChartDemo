@@ -45,28 +45,28 @@ public class MainActivity extends AppCompatActivity {
         dynamicLineChartManager2.setYAxis(100, 0, 10);
 
 //        //死循环添加数据
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (true) {
-//                    try {
-//                        Thread.sleep(500);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            list.add((int) (Math.random() * 50) + 10);
-//                            list.add((int) (Math.random() * 80) + 10);
-//                            list.add((int) (Math.random() * 100));
-//                            dynamicLineChartManager2.addEntry(list);
-//                            list.clear();
-//                        }
-//                    });
-//                }
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            list.add((int) (Math.random() * 50) + 10);
+                            list.add((int) (Math.random() * 80) + 10);
+                            list.add((int) (Math.random() * 100));
+                            dynamicLineChartManager2.addEntry(list);
+                            list.clear();
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
     //按钮点击添加数据

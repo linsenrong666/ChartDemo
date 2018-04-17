@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".BarActivity"/>
+        <activity android:name=".BActivity"/>
     </application>
 
 </manifest>
