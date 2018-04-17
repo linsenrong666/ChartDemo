@@ -54,6 +54,7 @@
             android:layout_marginLeft="4dp"
             android:textColor="@android:color/white"
             android:textSize="16sp"
+            android:maxLines="1"
             tools:text="200"/>
 
         <TextView
@@ -66,6 +67,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:minWidth="10dp"
+            android:maxLines="1"
             tools:text="0%"/>
 
 

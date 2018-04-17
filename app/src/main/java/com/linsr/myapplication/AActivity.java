@@ -41,6 +41,7 @@ import java.util.List;
 public class AActivity extends AppCompatActivity {
 
     private MyLineChart mLineChart;
+    private LineChart mLineChart2;
     private HorizontalBarChart mHorizontalBarChart;
 
     private List<Entry> entries;
@@ -54,6 +55,7 @@ public class AActivity extends AppCompatActivity {
         entries1 = new ArrayList<>();
         init();
         init2();
+        init3();
         findViewById(R.id.aa_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +81,25 @@ public class AActivity extends AppCompatActivity {
                 mLineChart.invalidate();
             }
         });
+    }
+
+    private void init3() {
+        mLineChart2 = (LineChart) findViewById(R.id.a_line_chart_2);
+        Matrix m = new Matrix();
+        m.postScale(2f, 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        mLineChart2.getViewPortHandler().refresh(m, mLineChart2, false);//将图表动画显示之前进行缩放
+        LineChartUtils.legend(mLineChart2);
+        LineChartUtils.lineChart(mLineChart2);
+        LineChartUtils.XAxis(getResources().getColor(R.color.line), mLineChart2);
+        LineChartUtils.YAxis(getResources().getColor(R.color.line), mLineChart2);
+        LineDataSet a = LineChartUtils.lineDataSet("当日分时数据", getResources().getColor(R.color.main_red), entries);
+        LineDataSet b = LineChartUtils.lineDataSet("昨日分时数据", Color.GRAY, entries1);
+        List<ILineDataSet> lineDataSets = new ArrayList<>();
+        lineDataSets.add(a);
+        lineDataSets.add(b);
+
+        LineData  data = new LineData(lineDataSets);
+        mLineChart2.setData(data);
     }
 
 

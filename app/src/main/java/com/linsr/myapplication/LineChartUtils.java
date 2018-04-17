@@ -65,6 +65,7 @@ public class LineChartUtils {
         xAxis.setAxisLineColor(color);//设置x轴线颜色
         xAxis.setAxisLineWidth(1f);//设置x轴线宽度
         xAxis.setAvoidFirstLastClipping(true);
+        xAxis.setTextSize(10f);
     }
 
     public static void YAxis(int color,LineChart lineChart) {

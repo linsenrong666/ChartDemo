@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <Button
-        android:id="@+id/aa_btn"
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="去柱状图"/>
+        android:orientation="vertical">
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
+        <Button
+            android:id="@+id/aa_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="去柱状图"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:orientation="horizontal">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
 
-            <com.linsr.myapplication.MyLineChart
-                android:id="@+id/a_line_chart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-
-            <ImageView
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@color/bg_blue"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+                android:fillViewport="true"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/aa_line_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="曲线图新增数据"/>
+                <com.linsr.myapplication.MyLineChart
+                    android:id="@+id/a_line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
 
-    <com.github.mikephil.charting.charts.HorizontalBarChart
-        android:id="@+id/a_bar_chart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"/>
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/bg_blue"/>
+            </LinearLayout>
+        </HorizontalScrollView>
 
-</LinearLayout>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/a_line_chart_2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <Button
+            android:id="@+id/aa_line_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="曲线图新增数据"/>
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/a_bar_chart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+</ScrollView>

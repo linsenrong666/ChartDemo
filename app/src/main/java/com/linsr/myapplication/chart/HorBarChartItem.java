@@ -52,6 +52,7 @@ public class HorBarChartItem extends LinearLayout {
             @Override
             public boolean onPreDraw() {
                 getViewTreeObserver().removeOnPreDrawListener(this);
+                mBarContainer.setVisibility(INVISIBLE);
                 int barContainerWidth = mBarContainer.getWidth();
                 int percentTxtWidth = mPercent.getWidth();
                 int countTxtWidth = mCount.getWidth();
@@ -67,22 +68,24 @@ public class HorBarChartItem extends LinearLayout {
                 }
                 lp.width = width;
                 mBar.setLayoutParams(lp);
-//                postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        final int initWidth = mBar.getWidth();
-//                        final ObjectAnimator anim = ObjectAnimator.ofFloat(mBar, "alpha", 0.0F, 1.0F).setDuration(1500);
-//                        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//                            @Override
-//                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//                                float cVal = (Float) anim.getAnimatedValue();
-//                                lp.width = (int) (initWidth * cVal);
-//                                mBar.setLayoutParams(lp);
-//                            }
-//                        });
-//                        anim.start();
-//                    }
-//                }, 0);
+
+                postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mBarContainer.setVisibility(VISIBLE);
+                        final int initWidth = mBar.getWidth();
+                        final ObjectAnimator anim = ObjectAnimator.ofFloat(mBar, "alpha", 0.0F, 1.0F).setDuration(1500);
+                        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                float cVal = (Float) anim.getAnimatedValue();
+                                lp.width = (int) (initWidth * cVal);
+                                mBar.setLayoutParams(lp);
+                            }
+                        });
+                        anim.start();
+                    }
+                }, 0);
                 return false;
             }
         });
